@@ -9,5 +9,5 @@ export const createPost = (newPost) => {
 };
 
 export const updatePost = (id, updatedPost) => {
-  axios.patch(`${url}/${id}`, updatedPost);
+  return axios.patch(`${url}/${id}`, updatedPost);
 };

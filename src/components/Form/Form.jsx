@@ -37,9 +37,20 @@ export default function Form({ currentId, setCurrentId }) {
     } else {
       dispatch(createPost(postData));
     }
+
+    clear();
   };
 
-  const clear = (params) => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -49,7 +60,9 @@ export default function Form({ currentId, setCurrentId }) {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a memory</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing a memory" : "Creating a memory"}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"

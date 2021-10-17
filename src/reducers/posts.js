@@ -5,9 +5,11 @@ const reducer = (posts = [], action) => {
     case "CREATE":
       return [...posts, action.payload];
     case "UPDATE": {
-      return posts.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      console.log(`1`, 1);
+      return posts.map((post) => {
+        console.log(post._id === action.payload._id);
+        return post._id === action.payload._id ? action.payload : post;
+      });
     }
     default:
       return posts;
