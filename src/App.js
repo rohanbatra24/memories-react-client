@@ -34,6 +34,7 @@ export default function App() {
         <Container>
           <Grid
             container
+            className={classes.mainContainer}
             justifyContent="space-between"
             alignItems="stretch"
             spacing={3}
