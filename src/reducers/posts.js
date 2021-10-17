@@ -14,6 +14,10 @@ const reducer = (posts = [], action) => {
         return post._id !== action.payload;
       });
     }
+    case "LIKE":
+      return posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
     default:
       return posts;
   }
