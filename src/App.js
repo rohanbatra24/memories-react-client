@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 
@@ -16,11 +16,10 @@ export default function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(`useeffect`);
-    dispatch(getPosts());
+  const [currentId, setCurrentId] = useState(null);
 
-    console.log("1 :>> ", 1);
+  useEffect(() => {
+    dispatch(getPosts());
   }, [dispatch]);
 
   return (
@@ -40,11 +39,11 @@ export default function App() {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts></Posts>
+              <Posts setCurrentId={setCurrentId}></Posts>
             </Grid>
 
             <Grid item xs={12} sm={4}>
-              <Form></Form>
+              <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
             </Grid>
           </Grid>
         </Container>

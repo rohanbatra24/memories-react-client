@@ -16,7 +16,7 @@ import moment from "moment";
 
 import useStyles from "./styles";
 
-export default function Post({ post }) {
+export default function Post({ post, setCurrentId }) {
   const classes = useStyles();
 
   return (
@@ -33,7 +33,11 @@ export default function Post({ post }) {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: "white" }} onClick={() => {}} size="small">
+        <Button
+          style={{ color: "white" }}
+          onClick={() => setCurrentId(post._id)}
+          size="small"
+        >
           <MoreHorizIcon fontSize="medium"></MoreHorizIcon>
         </Button>
       </div>
