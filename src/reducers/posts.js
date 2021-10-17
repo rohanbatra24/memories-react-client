@@ -5,10 +5,13 @@ const reducer = (posts = [], action) => {
     case "CREATE":
       return [...posts, action.payload];
     case "UPDATE": {
-      console.log(`1`, 1);
       return posts.map((post) => {
-        console.log(post._id === action.payload._id);
         return post._id === action.payload._id ? action.payload : post;
+      });
+    }
+    case "DELETE": {
+      return posts.filter((post) => {
+        return post._id !== action.payload;
       });
     }
     default:
