@@ -19,11 +19,14 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import useStyles from "./styles";
 import Input from "./Input";
+import { useHistory } from "react-router-dom";
 
 export default function Auth() {
   const classes = useStyles();
 
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -46,10 +49,11 @@ export default function Auth() {
     console.log(`res`, res);
     // the optional ? operation will prevent an undefined error if res does not exist or is falsy
     const result = res?.profileObj;
-    const token = res?.token;
+    const token = res?.tokenId;
 
     try {
       dispatch({ type: "AUTH", data: { result, token } });
+      history.push("/");
     } catch (error) {
       console.log(`error`, error);
     }
