@@ -28,13 +28,28 @@ export default function Auth() {
 
   const history = useHistory();
 
+  const initialFormData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [isSignup, setIsSignup] = useState(true);
 
-  const handleSubmit = (params) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("formData :>> ", formData);
+  };
 
-  const handleChange = (params) => {};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleShowPassword = (params) => {
     setShowPassword(!showPassword);
