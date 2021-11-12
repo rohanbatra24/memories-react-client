@@ -20,6 +20,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input";
 import { useHistory } from "react-router-dom";
+import { signin, signup } from "../../actions/auth";
 
 export default function Auth() {
   const classes = useStyles();
@@ -44,6 +45,13 @@ export default function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+
     console.log("formData :>> ", formData);
   };
 
