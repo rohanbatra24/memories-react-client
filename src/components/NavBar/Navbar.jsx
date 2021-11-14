@@ -10,6 +10,7 @@ import memories from "../../images/memories.png";
 
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
 export default function Navbar() {
   const classes = useStyles();
@@ -22,15 +23,15 @@ export default function Navbar() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  const logout = (params) => {
+  const logout = useCallback(() => {
     dispatch({ type: "LOGOUT" });
     history.push("/");
     setUser(null);
-  };
+  }, [dispatch, history]);
+
+  const token = user ? user.token : null;
 
   useEffect(() => {
-    const token = user?.token;
-
     if (token) {
       const decodedToken = decode(token);
 
@@ -40,7 +41,7 @@ export default function Navbar() {
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location, logout, user.token]);
+  }, [location, logout, token]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
