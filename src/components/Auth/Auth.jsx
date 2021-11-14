@@ -51,8 +51,6 @@ export default function Auth() {
     } else {
       dispatch(signin(formData, history));
     }
-
-    console.log("formData :>> ", formData);
   };
 
   const handleChange = (e) => {
@@ -69,7 +67,6 @@ export default function Auth() {
   };
 
   const googleSuccess = async (res) => {
-    console.log(`res`, res);
     // the optional ? operation will prevent an undefined error if res does not exist or is falsy
     const result = res?.profileObj;
     const token = res?.tokenId;
